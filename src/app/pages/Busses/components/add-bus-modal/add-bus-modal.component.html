@@ -1,0 +1,71 @@
+<div class="dialog">
+  <form
+    [formGroup]="addBusForm"
+    class="d-flex flex-column w-100"
+    (ngSubmit)="submit($event)"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Bus name</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        name="name"
+        class="w-100"
+        formControlName="name"
+        [class.is-invalid]="
+          addBusForm.controls['name'].invalid &&
+          addBusForm.controls['name'].touched
+        "
+      />
+      <mat-error
+        *ngIf="
+          addBusForm.controls['name'].invalid &&
+          addBusForm.controls['name'].touched
+        "
+      >
+        <span *ngIf="addBusForm.controls['name'].errors?.required"
+          >This field is required.</span
+        >
+        <span *ngIf="addBusForm.controls['name'].errors?.name"
+          >Please insert valid name.</span
+        >
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Number of seats</mat-label>
+      <input
+        type="number"
+        placeholder="Pick one"
+        aria-label="Number"
+        matInput
+        class="w-100"
+        formControlName="numberOfSeats"
+        [class.is-invalid]="
+          addBusForm.controls['numberOfSeats'].invalid &&
+          addBusForm.controls['numberOfSeats'].touched
+        "
+        required
+      />
+      <mat-error
+        *ngIf="
+          addBusForm.controls['numberOfSeats'].invalid &&
+          addBusForm.controls['numberOfSeats'].touched
+        "
+      >
+        <span *ngIf="addBusForm.controls['numberOfSeats'].errors?.required"
+          >This field is required.</span
+        >
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="submit($event)"
+    >
+      Add
+    </button>
+  </form>
+</div>

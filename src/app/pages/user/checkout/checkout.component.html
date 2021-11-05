@@ -1,0 +1,14 @@
+<div class="w-100 h-100 row mt-5 pt-5 content">
+  <div class="col-6 d-flex justify-content-center" *ngIf="loaded; else spinner">
+    <app-seat-map
+      [seats]="seats"
+      [price]="route.price"
+      (cartReady)="cartReady($event)"
+    ></app-seat-map>
+  </div>
+  <ng-template #spinner><mat-spinner></mat-spinner></ng-template>
+  <div class="col-5">
+    <h3><strong>Your order</strong></h3>
+    <div class="paypal" #paypal></div>
+  </div>
+</div>

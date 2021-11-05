@@ -1,0 +1,85 @@
+<div class="dialog">
+  <form
+    [formGroup]="addRouteForm"
+    class="d-flex flex-column w-100"
+    (ngSubmit)="submit($event)"
+  >
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Price</mat-label>
+      <input
+        type="number"
+        placeholder="Pick one"
+        aria-label="Number"
+        matInput
+        class="w-100"
+        formControlName="price"
+        [class.is-invalid]="
+          addRouteForm.controls['price'].invalid &&
+          addRouteForm.controls['price'].touched
+        "
+        required
+      />
+      <mat-error
+        *ngIf="
+          addRouteForm.controls['price'].invalid &&
+          addRouteForm.controls['price'].touched
+        "
+      >
+        <span *ngIf="addRouteForm.controls['price'].errors?.required"
+          >This field is required.</span
+        >
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Start Station</mat-label>
+      <mat-select  formControlName="startStation">
+        <mat-option value="{{station.stationId}}" *ngFor="let station of stations" >{{station.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>End Station</mat-label>
+      <mat-select formControlName="endStation">
+        <mat-option value="{{station.stationId}}" *ngFor="let station of stations" >{{station.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Busses</mat-label>
+      <mat-select formControlName="bus">
+        <mat-option value="{{bus.id}}" *ngFor="let bus of busses" >{{bus.name}} ({{bus.numberOfSeats}})</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="startingDate" type="datetime-local" placeholder="start date">
+      <mat-error *ngIf="
+      addRouteForm.controls['startingDate'].invalid &&
+      addRouteForm.controls['startingDate'].touched
+    ">
+<span *ngIf="addRouteForm.controls['startingDate'].errors?.required">This field is required.</span>
+</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="endingDate" type="datetime-local" placeholder="start date">
+      <mat-error *ngIf="
+      addRouteForm.controls['endingDate'].invalid &&
+      addRouteForm.controls['endingDate'].touched
+    ">
+<span *ngIf="addRouteForm.controls['endingDate'].errors?.required">This field is required.</span>
+</mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="submit($event)"
+    >
+      Add
+    </button>
+  </form>
+</div>

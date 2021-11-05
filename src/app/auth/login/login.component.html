@@ -1,0 +1,121 @@
+<div class="screen-wrapper w-100">
+  <div class="row h-100 d-flex justify-content-center">
+    <div class="banner col-4">
+      <img
+        src="../../../assets//images/travel.svg"
+        class="banner_image w-100 h-100"
+      />
+    </div>
+    <div class="col-4 d-flex align-items-center">
+      <div class="form w-100">
+        <h1 class="font-weight-bold font-italic">Log in</h1>
+        <form
+          [formGroup]="loginForm"
+          class="d-flex flex-column w-100"
+          (ngSubmit)="submit($event)"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              name="email"
+              class="w-100"
+              formControlName="email"
+              [class.is-invalid]="
+                loginForm.controls['email'].invalid &&
+                loginForm.controls['email'].touched
+              "
+            />
+            <mat-error
+              *ngIf="
+                loginForm.controls['email'].invalid &&
+                loginForm.controls['email'].touched
+              "
+            >
+              <span *ngIf="loginForm.controls['email'].errors?.required"
+                >This field is required.</span
+              >
+              <span *ngIf="loginForm.controls['email'].errors?.email"
+                >Please insert valid email.</span
+              >
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              type="text"
+              placeholder="Pick one"
+              aria-label="Number"
+              matInput
+              class="w-100"
+              formControlName="username"
+              [class.is-invalid]="
+                loginForm.controls['username'].invalid &&
+                loginForm.controls['username'].touched
+              "
+              required
+            />
+            <mat-error
+              *ngIf="
+                loginForm.controls['username'].invalid &&
+                loginForm.controls['username'].touched
+              "
+            >
+              <span *ngIf="loginForm.controls['username'].errors?.required"
+                >This field is required.</span
+              >
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Enter your password</mat-label>
+            <input
+              matInput
+              class="w-100"
+              [type]="hide ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon class="material-icons-outlined">{{
+                hide ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+          </mat-form-field>
+          <div class="d-flex flex-column">
+            <span>Don`t have an account?</span>
+            <a
+              routerLink="/auth/register"
+              color="primary"
+              class="mb-1 link-button"
+              >Register</a
+            >
+          </div>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            (click)="submit($event)"
+          >
+            Log in
+          </button>
+        </form>
+
+        <button
+          (click)="openEmailDialog()"
+          mat-raised-button
+          color="accent"
+          class="mt-3"
+        >
+          Reset password
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,268 @@
+<div class="screen-wrapper w-100">
+  <div class="row h-100 d-flex justify-content-center">
+    <div class="banner col-4">
+      <img
+        src="../../../assets//images/travel.svg"
+        class="banner_image w-100 h-100"
+      />
+    </div>
+    <div class="col-4 d-flex align-items-center mt-5">
+      <div class="form w-100">
+        <h1 class="font-weight-bold font-italic">Register</h1>
+        <form
+          [formGroup]="registrationForm"
+          class="d-flex flex-column w-100"
+          (ngSubmit)="submit()"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              name="email"
+              class="w-100"
+              formControlName="email"
+              [class.is-invalid]="
+                registrationForm.controls['email'].invalid &&
+                registrationForm.controls['email'].touched
+              "
+            />
+            <mat-error
+              *ngIf="
+                registrationForm.controls['email'].invalid &&
+                registrationForm.controls['email'].touched
+              "
+            >
+              <span *ngIf="registrationForm.controls['email'].errors?.required"
+                >This field is required.</span
+              >
+              <span *ngIf="registrationForm.controls['email'].errors?.email"
+                >Please insert valid email.</span
+              >
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{
+              registrationForm.controls["userType"].value == "company"
+                ? "Ceo First Name"
+                : "First Name"
+            }}</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              name="firstName"
+              class="w-100"
+              formControlName="firstName"
+              [class.is-invalid]="
+                registrationForm.controls['firstName'].invalid &&
+                registrationForm.controls['firstName'].touched
+              "
+            />
+            <mat-error
+              *ngIf="
+                registrationForm.controls['firstName'].invalid &&
+                registrationForm.controls['firstName'].touched
+              "
+            >
+              <span
+                *ngIf="registrationForm.controls['firstName'].errors?.required"
+                >This field is required.</span
+              >
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>{{
+              registrationForm.controls["userType"].value == "company"
+                ? "Ceo Last Name"
+                : "Last Name"
+            }}</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              name="lastName"
+              class="w-100"
+              formControlName="lastName"
+              [class.is-invalid]="
+                registrationForm.controls['lastName'].invalid &&
+                registrationForm.controls['lastName'].touched
+              "
+            />
+            <mat-error
+              *ngIf="
+                registrationForm.controls['lastName'].invalid &&
+                registrationForm.controls['lastName'].touched
+              "
+            >
+              <span
+                *ngIf="registrationForm.controls['lastName'].errors?.required"
+                >This field is required.</span
+              >
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              type="text"
+              placeholder="Pick one"
+              aria-label="Number"
+              matInput
+              class="w-100"
+              formControlName="username"
+              [class.is-invalid]="
+                registrationForm.controls['username'].invalid &&
+                registrationForm.controls['username'].touched
+              "
+              required
+            />
+            <mat-error
+              *ngIf="
+                registrationForm.controls['username'].invalid &&
+                registrationForm.controls['username'].touched
+              "
+            >
+              <span
+                *ngIf="registrationForm.controls['username'].errors?.required"
+                >This field is required.</span
+              >
+            </mat-error>
+          </mat-form-field>
+
+          <div class="d-flex flex-column">
+            <div>
+              <mat-radio-group
+                formControlName="userType"
+                color="primary"
+                class="d-flex"
+              >
+                <mat-radio-button value="user"  class="d-flex align-items-center radio-margin">User</mat-radio-button>
+                <mat-radio-button value="company" class="mt-3 mb-3 ml-3"
+                  >Company</mat-radio-button
+                >
+              </mat-radio-group>
+            </div>
+            <div>
+              <mat-radio-group
+                formControlName="gender"
+                color="primary"
+                class="d-flex"
+              >
+                <mat-radio-button value="0"  class="d-flex align-items-center radio-margin">Female</mat-radio-button>
+                <mat-radio-button value="1" class="mt-3 mb-3"
+                  >Male</mat-radio-button
+                >
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Enter your password</mat-label>
+            <input
+              matInput
+              class="w-100"
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              [class.is-invalid]="
+                registrationForm.controls['password'].invalid &&
+                registrationForm.controls['password'].touched
+              "
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hidePassword = !hidePassword"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePassword"
+            >
+              <mat-icon class="material-icons-outlined">{{
+                hidePassword ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+            <mat-error
+              *ngIf="
+                registrationForm.controls['password'].invalid &&
+                registrationForm.controls['password'].touched
+              "
+            >
+              <span
+                *ngIf="registrationForm.controls['password'].errors?.required"
+              >
+                Password is required
+              </span>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm your password</mat-label>
+            <input
+              matInput
+              class="w-100"
+              [type]="hideConfirmPassword ? 'password' : 'text'"
+              formControlName="confirmPassword"
+              [class.is-invalid]="
+                registrationForm.controls['confirmPassword'].invalid &&
+                registrationForm.controls['confirmPassword'].touched
+              "
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hideConfirmPassword = !hideConfirmPassword"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hideConfirmPassword"
+            >
+              <mat-icon class="material-icons-outlined">{{
+                hideConfirmPassword ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+            <mat-error
+              *ngIf="
+                registrationForm.controls['confirmPassword'].invalid &&
+                registrationForm.controls['confirmPassword'].touched
+              "
+            >
+              <span
+                *ngIf="
+                  registrationForm.controls['confirmPassword'].errors?.required
+                "
+              >
+                Please confrim password
+              </span>
+            </mat-error>
+
+            <mat-error
+              *ngIf="
+                registrationForm.controls['confirmPassword'].invalid &&
+                registrationForm.controls['confirmPassword'].touched
+              "
+            >
+              <span
+                *ngIf="
+                  registrationForm.controls['confirmPassword'].errors
+                    ?.notMatched
+                "
+              >
+                Passwords not matching
+              </span>
+            </mat-error>
+          </mat-form-field>
+
+          <div class="d-flex flex-column">
+            <span>Don`t have an account?</span>
+            <a
+              routerLink="/user/register"
+              color="primary"
+              class="mb-1 link-button"
+              >Log in</a
+            >
+          </div>
+          <button mat-raised-button color="primary" type="submit">
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

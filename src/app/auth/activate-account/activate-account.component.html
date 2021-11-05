@@ -1,0 +1,43 @@
+<div class="wrapper d-flex align-items-end">
+  <div
+    class="activated-text d-flex flex-column justify-content-center"
+    *ngIf="!err && !isPending && !alreadyActivated"
+  >
+    <h2>You successfully activated your account</h2>
+    <h2>You can now <a routerLink="/auth/login"> login</a></h2>
+  </div>
+  <div
+    class="activated-text d-flex flex-column justify-content-center"
+    *ngIf="!err && isPending"
+  >
+    <h2>We sent you an activation link</h2>
+    <h2>Please check your mail box</h2>
+  </div>
+  <div
+    class="activated-text text-center  d-flex flex-column justify-content-center"
+    *ngIf="!err && !isPending && alreadyActivated"
+  >
+    <h2>User is already activated </h2>
+    <h2>You can now <a routerLink="/auth/login"> login</a></h2>
+  </div>
+  <div
+    class="activated-text d-flex flex-column text-center justify-content-center"
+    *ngIf="err"
+  >
+    <h1>Something went wrong</h1>
+    <h1>Try resending an activation link</h1>
+    <button mat-raised-button color="primary" (click)="resendEmail()">
+      Resend
+    </button>
+  </div>
+
+  <img
+    [src]="
+      !err && isPending
+        ? pendingDrawing
+        : !err
+        ? successOprationDrawing
+        : failOperionDrawing
+    "
+  />
+</div>

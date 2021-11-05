@@ -1,0 +1,38 @@
+<div class="mt-5">
+  <app-range-picker (routeSubmit)="searchRoute($event)"></app-range-picker>
+</div>
+<div
+  class="
+    routes
+    w-100
+    h-100
+    d-flex
+    align-items-center
+    justify-content-center
+    flex-column
+  "
+>
+  <mat-paginator
+    *ngIf="routes"
+    [length]="countItems"
+    [pageSize]="itemPerPageRoute"
+    [pageSizeOptions]="[5]"
+    aria-label="Select page"
+    (page)="handlePage($event)"
+  >
+  </mat-paginator>
+  <div class="w-75" *ngIf="loaded; else spinner">
+    <app-route *ngFor="let route of routes" [route]="route"></app-route>
+    <div
+      *ngIf="routes == null"
+      class="d-flex justify-content-center align-items-center flex-column p-3"
+    >
+      <h1 class="banner-message mb-5">Choose your route</h1>
+      <img
+        class="banner-image w-50 h-50"
+        src="../../../../assets/images/waitingForFilling.svg"
+      />
+    </div>
+  </div>
+  <ng-template #spinner><mat-spinner></mat-spinner></ng-template>
+</div>

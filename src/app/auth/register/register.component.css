@@ -1,0 +1,13 @@
+.screen-wrapper{
+    height: 100%;
+    }
+    :host{
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+    .link-button{
+        text-decoration: none;
+    }
+    .radio-margin{
+        margin-right: 10px;
+    }

@@ -1,0 +1,38 @@
+<h3>Please enter email that was used for account creationg</h3>
+<form
+  [formGroup]="emailForm"
+  class="d-flex flex-column w-100"
+  (ngSubmit)="submit($event)"
+>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      required
+      type="text"
+      name="email"
+      class="w-100"
+      formControlName="email"
+      [class.is-invalid]="
+        emailForm.controls['email'].invalid &&
+        emailForm.controls['email'].touched
+      "
+    />
+    <mat-error
+      *ngIf="
+        emailForm.controls['email'].invalid &&
+        emailForm.controls['email'].touched
+      "
+    >
+      <span *ngIf="emailForm.controls['email'].errors?.required"
+        >This field is required.</span
+      >
+      <span *ngIf="emailForm.controls['email'].errors?.email"
+        >Please insert valid email.</span
+      >
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" (click)="submit($event)">
+    Reset
+  </button>
+</form>

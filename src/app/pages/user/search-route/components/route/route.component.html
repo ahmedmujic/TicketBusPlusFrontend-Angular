@@ -1,0 +1,68 @@
+<div class="container bg-white d-flex flex-column justify-content-between p-3 mat-elevation-z2">
+  <div class="row p-3">
+    <div class="col-8">
+      <div
+        class="
+          w-100
+          row
+          d-flex
+          align-items-center
+          justify-content-center
+          flex-row
+        "
+      >
+        <div class="col-2 d-flex justify-content-center flex-column">
+          <h2 class="m-0"><strong>{{route.startingDate | date:'HH:mm'}}</strong></h2>
+        </div>
+        <div class="divider col-1"></div>
+        <div class="col-2 d-flex justify-content-center">
+          <h3 class="m-0">{{route.duration* 1000 | date:'mm:ss'}}</h3>
+        </div>
+        <div class="divider col-1"></div>
+        <div class="col-2 d-flex justify-content-center">
+          <h2 class="m-0"><strong>{{route.endingDate | date:'HH:mm'}}</strong></h2>
+        </div>
+      </div>
+      <div
+        class="
+          w-100
+          row
+          d-flex
+          align-items-center
+          justify-content-center
+          flex-row
+        "
+      >
+        <div class="col-2 d-flex justify-content-center flex-column text-muted">
+          <h4 class="m-0">{{route.startingTown}}</h4>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-2"></div>
+        <div class="col-1"></div>
+        <div class="col-2 d-flex justify-content-center text-muted">
+          <h4 class="m-0">{{route.endingTown}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 d-flex justify-content-end align-items-center">
+      <h1 class="m-0 d-flex justify-content-end"><strong>{{route.price | currency:'BAM'}}</strong></h1>
+    </div>
+  </div>
+  <div class="row w-100 mb-2">
+    <div class="col-3 d-flex justify-content-center align-items-center">
+      <mat-icon class="group-icon"> groups </mat-icon>
+      <h2 class="mb-0 ml-3"><strong>{{route.sells}}</strong></h2>
+    </div>
+    <div class="col-6">
+      <div class="map-container">
+        <div class="map-frame">
+          <div #map id="{{route.duration.toString()}}" class="map"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-2 d-flex justify-content-center align-items-center">
+      <a  mat-flat-button  color="primary" class="w-100" [routerLink]="['/route/checkout']" [queryParams]="{routeId: route.id, busId: route.busId}" >Reserve</a>
+    </div>
+  </div>
+</div>
+

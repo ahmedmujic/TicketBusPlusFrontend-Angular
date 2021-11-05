@@ -1,0 +1,12 @@
+.paypal {
+  animation-name: paypal;
+  animation-duration: 0.5s;
+}
+@keyframes paypal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

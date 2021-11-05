@@ -1,0 +1,23 @@
+<div
+  class="d-flex justify-content-center align-items-center w-100 h-100 pt-5 mt-5"
+>
+  <div class="d-flex justify-content-center align-items-center w-100 h-100">
+    <div class="table w-100 h-100">
+      <div class="d-flex justify-content-between">
+        <h1><strong>All routes</strong></h1>
+        <button mat-raised-button color="primary" (click)="openAddRouteModal()">
+          Add route
+        </button>
+      </div>
+
+      <app-pagination-table
+        *ngIf="data != null"
+        [data]="data"
+        [columns]="columns"
+        (tableChange)="paginationChange($event)"
+      ></app-pagination-table>
+    </div>
+  </div>
+
+  <div></div>
+</div>

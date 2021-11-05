@@ -1,0 +1,33 @@
+.side-container {
+  width: 100%;
+  height: 100%;
+}
+.route-icon {
+  height: 30px;
+}
+.route-name {
+  padding-left: 15px;
+}
+.active {
+  color: white;
+  background-color: #e91e63;
+}
+a {
+  text-decoration: none;
+  color: #0072bf;
+}
+.side-nav {
+  min-width: 15.625rem !important;
+  margin-right: 100px;
+  padding-top: 100px;
+}
+.menu-item {
+  border-radius: 10px;
+  margin: 20px !important;
+}
+.content {
+  padding: 20px;
+  margin-left: 32px;
+  height: 100vh;
+  overflow-y: hidden;
+}

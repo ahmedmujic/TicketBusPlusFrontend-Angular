@@ -1,0 +1,80 @@
+<div
+  class="search-picker d-flex justify-content-center align-items-center pt-5"
+>
+  <form
+    [formGroup]="rangePickForm"
+    class="d-flex flex-column w-100 align-items-center"
+    (ngSubmit)="submit($event)"
+  >
+    <div class="d-flex justify-content-between picker">
+      <div style="background-color: rgb(255, 255, 255, 0.4) !important">
+        <mat-form-field appearance="fill">
+          <mat-label>From</mat-label>
+          <mat-select formControlName="startTown" #toTownScroll>
+            <mat-option *ngFor="let town of towns" value="{{ town.id }}">{{
+              town.name
+            }}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              rangePickForm.controls['startTown'].invalid &&
+              rangePickForm.controls['startTown'].touched
+            "
+          >
+            <span *ngIf="rangePickForm.controls['startTown'].errors?.required"
+              >This field is required.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>To</mat-label>
+          <mat-select formControlName="endTown" #toTownScroll>
+            <mat-option *ngFor="let town of towns" value="{{ town.id }}">{{
+              town.name
+            }}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              rangePickForm.controls['endTown'].invalid &&
+              rangePickForm.controls['endTown'].touched
+            "
+          >
+            <span *ngIf="rangePickForm.controls['endTown'].errors?.required"
+              >This field is required.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field
+        appearance="fill"
+        class="w-25"
+        style="background-color: rgb(255, 255, 255, 0.4) !important"
+      >
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input
+            matStartDate
+            placeholder="Start date"
+            formControlName="startingDate"
+          />
+          <input
+            matEndDate
+            placeholder="End date"
+            formControlName="endingDate"
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        class="search-button"
+        (click)="submit($event)"
+      >
+        Search
+      </button>
+    </div>
+  </form>
+</div>

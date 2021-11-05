@@ -1,0 +1,22 @@
+<div class="side-container">
+  <mat-sidenav-container class="w-100 h-100">
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="side-nav">
+      <div *ngFor="let route of routes">
+        <a class="menu-item d-flex align-items-center justify-content-center p-3"  routerLink="{{ route.route }}"  routerLinkActive="active" >
+          <div class="d-flex align-items-center mr-2 route-icon" >
+            <mat-icon class="material-icons-outlined ">
+              {{ route.icon }}
+            </mat-icon>
+          </div>
+          <h2 class="m-0  route-name">{{route.name}}</h2>
+        </a>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+      <div class="content d-flex flex-column align-items-center">
+        <router-outlet></router-outlet>
+    </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

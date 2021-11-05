@@ -1,0 +1,27 @@
+<div class="h-100">
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div *ngIf="loaded; else spinner">
+        <div class="row d-flex justify-content-between">
+          <div class="col-4 p-0 m-0" *ngFor="let data of block_stats">
+            <app-block-stats class="stats" [data]="data"></app-block-stats>
+          </div>
+        </div>
+
+        <div class="d-flex row charts">
+          <app-pie-stats
+            *ngIf="monthData != null"
+            [data]="monthData"
+            class="col-5 d-flex justify-content-center"
+          ></app-pie-stats>
+          <app-pie-country-stats
+            *ngIf="countryData != null"
+            [data]="countryData"
+            class="col-5 d-flex justify-content-center pl-5"
+          ></app-pie-country-stats>
+        </div>
+      </div>
+      <ng-template #spinner><mat-spinner></mat-spinner></ng-template>
+    </div>
+  </div>
+</div>
