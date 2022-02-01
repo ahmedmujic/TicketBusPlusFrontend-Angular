@@ -1,4 +1,4 @@
 export class Role {
     readonly Company = "Company";
-    readonly User = "User1";
+    readonly User = "User";
 }
